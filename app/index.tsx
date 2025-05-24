@@ -1,14 +1,26 @@
-import { useRouter } from 'expo-router'
-import React, { useEffect } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import * as Font from 'expo-font';
+import { useRouter } from 'expo-router';
+import React, { useEffect } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 
 
 const index = () => {
   const router = useRouter()
 
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      'JalnanOTF': require('../assets/fonts/JalnanOTF.otf'),
+      'Pretendard-Medium': require('../assets/fonts/Pretendard-Medium.otf'),
+      'Pretendard-Regular': require('../assets/fonts/Pretendard-Regular.otf')
+    });
+    // setFontsLoaded(true);
+  };
+
   useEffect(() => {
+    loadFonts()
+    
     setTimeout(() => {
-      router.push("/scene/home")
+      router.push("/screens/home")
     }, 2000)
   }, [])
 
