@@ -11,7 +11,7 @@ const Typo = ({
   color = Colors.black,
   align = 'left',
   style,
-  numberOfLines = 1,
+  numberOfLines = 0,
 }: TypoProps) => {
 
   const textStyle: TextStyle = {

@@ -3,7 +3,6 @@ import { useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
-
 const index = () => {
   const router = useRouter()
 
@@ -12,9 +11,8 @@ const index = () => {
       'JalnanOTF': require('../assets/fonts/JalnanOTF.otf'),
       'Pretendard-Medium': require('../assets/fonts/Pretendard-Medium.otf'),
       'Pretendard-Regular': require('../assets/fonts/Pretendard-Regular.otf')
-    });
-    // setFontsLoaded(true);
-  };
+    })
+  }
 
   useEffect(() => {
     loadFonts()
