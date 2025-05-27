@@ -1,20 +1,30 @@
-import TodoBox from '@/components/TodoBox'
-import { Colors } from '@/constants/Colors'
-import React from 'react'
-import { Image, ScrollView, StyleSheet, View } from 'react-native'
+import TodoBox from '@/components/TodoBox';
+import { Colors } from '@/constants/Colors';
+import { TodoContainer } from '@/types/TodoContainer';
+import React from 'react';
+import { FlatList, Image, StyleSheet, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const home = () => {
+  const initialTodoBoxes: TodoContainer[] = [
+    { id: '1', title: '오늘', subTitle: '2025.5.24(토)', imageSource: require('../../assets/images/pin.png') },
+    { id: '2', title: '미래', subTitle: '', imageSource: require('../../assets/images/blank.png') },
+  ]
+
   return (
-    <View style={styles.container}> 
-      <View style={styles.header}>
-        <Image resizeMode='contain' source={require('../../assets/images/logo.png')} />
+    <GestureHandlerRootView>
+      <View style={styles.container}> 
+        <View style={styles.header}>
+          <Image resizeMode='contain' source={require('../../assets/images/logo.png')} />
+        </View>
+        <FlatList 
+          data={initialTodoBoxes} 
+          keyExtractor={(item) => item.id}
+          renderItem={(data) => (
+            <TodoBox {...data.item} />
+        )} />
       </View>
-      <ScrollView>
-        {/* <Typo size={30} family={Fonts.Jalnan.default}>체크잇체크잇체크잇</Typo>
-        <Typo size={30}>체크잇체크잇체크잇</Typo> */}
-        <TodoBox />
-      </ScrollView>
-    </View>
+    </GestureHandlerRootView>
   )
 }
 
@@ -28,6 +38,6 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 40,
-    paddingBottom: 28
+    paddingBottom: 20
   }
 })
