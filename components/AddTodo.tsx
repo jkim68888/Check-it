@@ -1,12 +1,15 @@
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import Typo from './Typo'
 
 const AddTodo = () => {
+  const router = useRouter()
+
   const handleAdd = () => {
-    console.log('할 일 추가 화면으로 이동')
+    router.push('/screens/edit')
   }
 
   return (
