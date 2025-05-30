@@ -1,14 +1,24 @@
-import { Colors } from '@/constants/Colors'
-import { Todo } from '@/types/Todo'
-import React from 'react'
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Colors } from '@/constants/Colors';
+import { useTodo } from '@/hooks/useTodo';
+import { Todo } from '@/types/Todo';
+import React from 'react';
+import { Alert, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const DeleteBox = (item: Todo) => {
+const DeleteBox = (todo: Todo) => {
+  const { deleteTodo } = useTodo();
+
+  const handleDelete = () => {
+    Alert.alert('삭제', '할 일을 삭제할까요?', [
+      { text: '취소', style: 'cancel' },
+      { text: '삭제', onPress: () => deleteTodo(todo) },
+    ])
+  }
+  
   return (
     <View style={styles.rowBack}>
       <TouchableOpacity
         style={styles.deleteButton}
-        onPress={() => {}}
+        onPress={handleDelete}
       >
         <Image source={require('../assets/images/delete.png')} />
       </TouchableOpacity>
