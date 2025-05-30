@@ -1,19 +1,24 @@
-import { useTodo } from '@/hooks/useTodo'
-import { Todo } from '@/types/Todo'
-import React, { useEffect } from 'react'
-import { SwipeListView } from 'react-native-swipe-list-view'
-import DeleteBox from './DeleteBox'
-import TodoItem from './TodoItem'
+import { useTodo } from '@/hooks/useTodo';
+import { Todo } from '@/types/Todo';
+import React, { useEffect } from 'react';
+import { TouchableOpacity } from 'react-native';
+import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
+import TodoItem from './TodoItem';
+
 
 const TodoList = () => {
-  const { todos } = useTodo();
+  const { todos, reorderTodo } = useTodo();
   
-  const renderHiddenItem = (item: Todo) => (
-    <DeleteBox {...item} />
-  )
-
-  const renderItem = (item: Todo) => (
-    <TodoItem {...item} />
+  const renderItem = ({item, drag, isActive}: RenderItemParams<Todo>) => (
+    <TouchableOpacity
+      onLongPress={drag} // 길게 눌러서 드래그 시작
+      delayLongPress={100}
+      style={{
+        opacity: isActive ? 0.5 : 1
+      }}
+    >
+      <TodoItem {...item} />
+    </TouchableOpacity>
   )
 
   useEffect(() => {
@@ -21,13 +26,12 @@ const TodoList = () => {
   }, [todos])
   
   return (
-    <SwipeListView
+    <DraggableFlatList
       data={todos}
-      renderItem={(data) => renderItem(data.item)}
-      renderHiddenItem={(data) => renderHiddenItem(data.item)}
-      rightOpenValue={-53}
-      disableRightSwipe
+      renderItem={(data) => renderItem(data)}
       keyExtractor={(item) => item.id}
+      onDragEnd={(data) => reorderTodo(data.data)}
+      scrollEnabled={false}
     />
   );
 }

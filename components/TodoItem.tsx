@@ -1,12 +1,16 @@
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
+import { useTodo } from '@/hooks/useTodo'
 import { Todo } from '@/types/Todo'
 import React from 'react'
-import { Alert, StyleSheet, Text, View } from 'react-native'
-import { RectButton } from 'react-native-gesture-handler'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
+import DeleteBox from './DeleteBox'
 import Typo from './Typo'
 
 const TodoItem = (item: Todo) => {
+  const { toggleDone } = useTodo()
+  
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high': return Colors.high
@@ -15,29 +19,20 @@ const TodoItem = (item: Todo) => {
       default: return Colors.low
     }
   }
-  
-  const handleOrder = () => {
-    Alert.alert('순서 변경', '할 일 순서를 변경할까요?', [
-      { text: '취소', style: 'cancel' },
-      { text: '변경', onPress: () => {} },
-    ])
-  }
 
-  const handleDelete = () => {
-    Alert.alert('삭제', '할 일을 삭제할까요?', [
-      { text: '취소', style: 'cancel' },
-      { text: '삭제', onPress: () => {} },
-    ])
-  }
+  const renderRightActions = () => (
+    <DeleteBox {...item} />
+  )
   
   return (
     <View style={styles.container}>
-      <RectButton
-        style={[
+      <Swipeable
+        childrenContainerStyle={[
           styles.button,
           {backgroundColor: getPriorityColor(item.priority)}
         ]}
-        onLongPress={handleOrder}
+        renderRightActions={renderRightActions}
+        overshootRight={true}
       >
         {item.done ? (
           <Typo
@@ -57,10 +52,10 @@ const TodoItem = (item: Todo) => {
             {item.text}
           </Typo>
         )}
-        <View style={styles.checkbox}>
+        <TouchableOpacity style={styles.checkbox} onPress={() => toggleDone(item)}>
           {item.done && <Text style={styles.checkmark}>✓</Text>}
-        </View>
-      </RectButton>
+        </TouchableOpacity>
+      </Swipeable>
     </View>
   )
 }

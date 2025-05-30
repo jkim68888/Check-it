@@ -15,7 +15,7 @@ const DeleteBox = (todo: Todo) => {
   }
   
   return (
-    <View style={styles.rowBack}>
+    <View>
       <TouchableOpacity
         style={styles.deleteButton}
         onPress={handleDelete}
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 8.5,
     borderRadius: 4,
+    marginLeft: 16
   },
   rowBack: {
     alignItems: 'center',
