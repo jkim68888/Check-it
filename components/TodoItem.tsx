@@ -10,15 +10,6 @@ import Typo from './Typo'
 
 const TodoItem = (item: Todo) => {
   const { toggleDone } = useTodo()
-  
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high': return Colors.high
-      case 'medium': return Colors.middle
-      case 'low': return Colors.low
-      default: return Colors.low
-    }
-  }
 
   const renderRightActions = () => (
     <DeleteBox {...item} />
@@ -29,7 +20,7 @@ const TodoItem = (item: Todo) => {
       <Swipeable
         childrenContainerStyle={[
           styles.button,
-          {backgroundColor: getPriorityColor(item.priority)}
+          {backgroundColor: item.priority.color}
         ]}
         renderRightActions={renderRightActions}
         overshootRight={true}

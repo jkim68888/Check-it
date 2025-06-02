@@ -8,6 +8,7 @@ import { Fonts } from '@/constants/Fonts'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const edit = () => {
   const router = useRouter()
@@ -18,17 +19,19 @@ const edit = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={goBack}>
-        <Image source={require('../../assets/images/back.png')} />
-      </TouchableOpacity>
-      <CalenderToggleBox />
-      <InputBox />
-      <PrioritySelectBox />
-      <TouchableOpacity style={styles.button}>
-        <Typo style={styles.buttonText} family={Fonts.Pretendard.medium} size={16}>추가 하기</Typo>
-      </TouchableOpacity>
-    </View>
+    <GestureHandlerRootView>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={goBack}>
+          <Image source={require('../../assets/images/back.png')} />
+        </TouchableOpacity>
+        <CalenderToggleBox />
+        <InputBox />
+        <PrioritySelectBox />
+        <TouchableOpacity style={styles.button}>
+          <Typo style={styles.buttonText} family={Fonts.Pretendard.medium} size={16}>추가 하기</Typo>
+        </TouchableOpacity>
+      </View>
+    </GestureHandlerRootView>
   )
 }
 

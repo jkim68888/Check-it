@@ -1,4 +1,6 @@
-import { Priority, Todo } from '@/types/Todo';
+import { initialTodos } from '@/data/initialTodos';
+import { Priority } from '@/types/Priority';
+import { Todo } from '@/types/Todo';
 import React, { createContext, ReactNode, useState } from 'react';
 import uuid from 'react-native-uuid';
 
@@ -14,11 +16,7 @@ interface TodoContextProps {
 const TodoContext = createContext<TodoContextProps | undefined>(undefined);
 
 const TodoProvider = ({ children }: { children: ReactNode }) => {
-  const [todos, setTodos] = useState<Todo[]>([
-    { id: '1', order: 0, text: '우측의 네모를 눌러 완료!', priority: 'high', done: true },
-    { id: '2', order: 1, text: '길게 눌러 순서 변경!', priority: 'medium', done: false },
-    { id: '3', order: 2, text: '왼쪽으로 스와이프 하여 삭제!', priority: 'low', done: false },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
   const addTodo = (text: string, priority: Priority) => {
     if (!text.trim()) {

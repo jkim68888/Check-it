@@ -1,3 +1,5 @@
+import { Priority } from "./Priority"
+
 export type Todo = {
   id: string
   order: number
@@ -5,5 +7,3 @@ export type Todo = {
   priority: Priority
   done: boolean
 }
-
-export type Priority = 'low' | 'medium' | 'high';

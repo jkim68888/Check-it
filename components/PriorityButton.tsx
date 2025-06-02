@@ -1,28 +1,30 @@
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
-import React, { useState } from 'react'
-import { Pressable, StyleSheet, View } from 'react-native'
+import { PrioritySelectProps } from '@/types/PrioritySelectProps'
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { Pressable } from 'react-native-gesture-handler'
 import Typo from './Typo'
 
-const PriorityButton = () => {
-  const [selected, setSelected] = useState(false)
+const PriorityButton = ({
+  item,
+  selectedItem,
+  onPress
+}: PrioritySelectProps) => {
+  const isSelected = selectedItem === item
 
-  const selectPriority = () => {
-    setSelected(prev => !prev)
-  }
   return (
-    <Pressable onPress={selectPriority}>
-        {({ pressed }) => (
-          <View style={selected ? styles.selectedButton: styles.defaultButton}>
-            <View style={styles.circle} />
-            <Typo 
-              style={selected ? styles.selectedText: styles.defaultText} 
-              family={Fonts.Pretendard.medium} 
-              size={16}>
-                긴급
-            </Typo>
-          </View>
-        )} 
+    <Pressable onPress={() => onPress(item)}>
+      <View style={[styles.button, {backgroundColor: isSelected ? item.bg : 'transparent'}]}>
+          <View style={[styles.circle, {backgroundColor: item.color}]} />
+          <Typo 
+            family={Fonts.Pretendard.medium} 
+            size={16}
+            color={isSelected ? Colors.white : Colors.black}
+          >
+            {item.text}
+          </Typo>
+        </View>
     </Pressable>
   )
 }
@@ -30,17 +32,7 @@ const PriorityButton = () => {
 export default PriorityButton
 
 const styles = StyleSheet.create({
-  defaultButton: {
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 90,
-    height: 40,
-    borderRadius: 20
-  },
-  selectedButton: {
-    backgroundColor: Colors.highBg,
+  button: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -53,14 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 16, 
     height: 16, 
-    backgroundColor: Colors.high, 
     borderRadius: 8,
     marginRight: 8
-  },
-  defaultText: {
-    color: Colors.black
-  },
-  selectedText: {
-    color: Colors.white
   }
 })
