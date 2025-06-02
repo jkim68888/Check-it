@@ -10,14 +10,29 @@
     "newArchEnabled": true,
     "assetBundlePatterns": ["**/*"], 
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#ffffff"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#ffffff",
+        "mdpi": "./assets/splash-mdpi.png",
+        "hdpi": "./assets/splash-hdpi.png",
+        "xhdpi": "./assets/splash-xhdpi.png",
+        "xxhdpi": "./assets/splash-xxhdpi.png",
+        "xxxhdpi": "./assets/splash-xxxhdpi.png"
+      }
     },
     "web": {
       "bundler": "metro",

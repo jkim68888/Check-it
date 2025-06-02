@@ -1,11 +1,17 @@
+import Home from '@/components/Home';
 import * as Font from 'expo-font';
 import { useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import React, { useCallback, useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { LocaleConfig } from 'react-native-calendars';
+
+// 앱 시작 시 스플래시 화면 유지
+SplashScreen.preventAutoHideAsync();
 
 const index = () => {
   const router = useRouter()
+  const [appIsReady, setAppIsReady] = useState(false);
 
   // 폰트 로딩
   const loadFonts = async () => {
@@ -34,16 +40,37 @@ const index = () => {
   LocaleConfig.defaultLocale = 'ko'
 
   useEffect(() => {
-    loadFonts()
-    
-    setTimeout(() => {
-      router.push("/screens/home")
-    }, 2000)
+    async function prepare() {
+      try {
+        // 폰트 로딩, API 호출, 데이터 로딩 등 초기화 작업
+        loadFonts()
+        // 인위적으로 최소 1초 대기
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // 준비 완료
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
   }, [])
 
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      // 스플래시 화면 숨기기
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null; // 스플래시 화면 유지
+  }
+
   return (
-    <View style={styles.container}>
-      <Image resizeMode='contain' source={require("../assets/images/splashImage.png")} />
+    <View style={styles.container} onLayout={onLayoutRootView}>
+      <Home />
     </View>
   )
 }
