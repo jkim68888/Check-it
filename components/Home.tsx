@@ -3,9 +3,12 @@ import { Colors } from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
 import { useTodo } from '@/hooks/useTodo';
 import React, { useState } from 'react';
-import { FlatList, Image, Modal, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, FlatList, Image, Modal, Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Typo from './Typo';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const Home = () => {
   const { todoContainers, todos } = useTodo();
@@ -41,6 +44,7 @@ const Home = () => {
           transparent={true}
           visible={isInfoVisible}
           onRequestClose={() => setIsInfoVisible(false)}
+          statusBarTranslucent={true}
         >
           <TouchableOpacity 
             style={styles.modalOverlay}
@@ -85,16 +89,29 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    height: '100%',
   },
   modalContent: {
+    ...Platform.select({
+      ios: {
+        width: '90%',
+        maxWidth: 400,
+      },
+      android: {
+        top: windowHeight / 2,
+        left: windowWidth / 2,
+        width: 300,
+        height: 124,
+        elevation: 5,
+      },
+    }),
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 20,
-    width: '90%',
-    maxWidth: 400,
   },
   modalHeader: {
     flexDirection: 'row',
