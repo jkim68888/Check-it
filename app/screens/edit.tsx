@@ -4,6 +4,7 @@ import PrioritySelectBox from '@/components/PrioritySelectBox'
 import Typo from '@/components/Typo'
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
+import { useTodo } from '@/hooks/useTodo'
 import { Priority } from '@/types/Priority'
 import dayjs from 'dayjs'
 import { useRouter } from 'expo-router'
@@ -17,6 +18,7 @@ export default function EditScreen() {
   const [todoText, setTodoText] = useState('')
   const [selectedDate, setSelectedDate] = useState(today)
   const [selectedPriority, setSelectedPriority] = useState<Priority | null>(null)
+  const { addTodo } = useTodo();
 
   const goBack = () => {
     router.back()
@@ -34,11 +36,8 @@ export default function EditScreen() {
   // 할 일 추가
   const handleAdd = () => {
     if (isFormValid()) {
-      console.log({
-        date: selectedDate,
-        text: todoText,
-        priority: selectedPriority
-      })
+      addTodo(todoText, new Date(selectedDate), selectedPriority as Priority)
+      goBack()
     }
   }
 

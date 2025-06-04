@@ -7,7 +7,7 @@ import uuid from 'react-native-uuid';
 // Context & Provider 정의
 interface TodoContextProps {
   todos: Todo[];
-  addTodo: (text: string, priority: Priority) => void;
+  addTodo: (text: string, date: Date, priority: Priority) => void;
   toggleDone: (todo: Todo) => void;
   deleteTodo: (todo: Todo) => void;
   reorderTodo: (newTodos: Todo[]) => void;
@@ -18,7 +18,7 @@ const TodoContext = createContext<TodoContextProps | undefined>(undefined);
 const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
 
-  const addTodo = (text: string, priority: Priority) => {
+  const addTodo = (text: string, date: Date, priority: Priority) => {
     if (!text.trim()) {
       console.warn('빈 할 일은 추가할 수 없습니다.');
       return;
@@ -30,6 +30,7 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
       text,
       priority,
       done: false,
+      date: new Date()
     };
 
     setTodos(prev => [...prev, newTodo]);
@@ -59,4 +60,4 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
 }
 
 
-export { TodoProvider, TodoContext };
+export { TodoContext, TodoProvider };
