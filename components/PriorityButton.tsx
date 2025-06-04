@@ -1,16 +1,23 @@
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
-import { PrioritySelectProps } from '@/types/PrioritySelectProps'
+import { Priority } from '@/types/Priority'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Pressable } from 'react-native-gesture-handler'
 import Typo from './Typo'
 
+interface PriorityButtonProps {
+  item: Priority;
+  selectedItem: Priority | null;
+  onPress: (item: Priority) => void;
+}
+
 const PriorityButton = ({
   item,
   selectedItem,
   onPress
-}: PrioritySelectProps) => {
+}: PriorityButtonProps) => {
+  
   const isSelected = selectedItem === item
 
   return (

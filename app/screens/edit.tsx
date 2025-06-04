@@ -1,41 +1,85 @@
-
 import CalenderToggleBox from '@/components/CalenderToggleBox'
 import InputBox from '@/components/InputBox'
 import PrioritySelectBox from '@/components/PrioritySelectBox'
 import Typo from '@/components/Typo'
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
+import { Priority } from '@/types/Priority'
+import dayjs from 'dayjs'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
-const edit = () => {
+export default function EditScreen() {
   const router = useRouter()
-  const [enable, setEnable] = useState(false)
+  const today = dayjs().format('YYYY-MM-DD')
+  const [todoText, setTodoText] = useState('')
+  const [selectedDate, setSelectedDate] = useState(today)
+  const [selectedPriority, setSelectedPriority] = useState<Priority | null>(null)
 
   const goBack = () => {
     router.back()
+  }
+
+  // 유효성 검사 함수
+  const isFormValid = () => {
+    return (
+      todoText.trim().length > 0 &&
+      selectedPriority !== null &&
+      selectedDate !== null
+    )
+  }
+
+  // 할 일 추가
+  const handleAdd = () => {
+    if (isFormValid()) {
+      console.log({
+        date: selectedDate,
+        text: todoText,
+        priority: selectedPriority
+      })
+    }
   }
 
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
         <TouchableOpacity onPress={goBack}>
-          <Image source={require('../../assets/images/back.png')} />
+          <Image source={require("../../assets/images/back.png")} />
         </TouchableOpacity>
-        <CalenderToggleBox />
-        <InputBox />
-        <PrioritySelectBox />
-        <TouchableOpacity style={styles.button}>
-          <Typo style={styles.buttonText} family={Fonts.Pretendard.medium} size={16}>추가 하기</Typo>
+        <CalenderToggleBox 
+          selectedDate={selectedDate}
+          onDateChange={setSelectedDate}
+        />
+        <InputBox 
+          value={todoText}
+          onChangeText={setTodoText}
+        />
+        <PrioritySelectBox 
+          selectedPriority={selectedPriority}
+          onPriorityChange={setSelectedPriority}
+        />
+        <TouchableOpacity
+          style={[
+            styles.button,
+            isFormValid() ? styles.enabledButton : styles.disabledButton,
+          ]}
+          onPress={handleAdd}
+          disabled={!isFormValid()}
+        >
+          <Typo
+            style={isFormValid() ? styles.enabledButtonText : styles.disabledButtonText}
+            family={Fonts.Pretendard.medium}
+            size={16}
+          >
+            추가 하기
+          </Typo>
         </TouchableOpacity>
       </View>
     </GestureHandlerRootView>
   )
 }
-
-export default edit
 
 const styles = StyleSheet.create({
   container: {
@@ -52,10 +96,19 @@ const styles = StyleSheet.create({
     height: 44,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.grayD9,
     borderRadius: 8
   },
-  buttonText: {
+  enabledButton: {
+    backgroundColor: Colors.primary
+  },
+  disabledButton: {
+    backgroundColor: Colors.grayD9
+  },
+  enabledButtonText: {
+    color: Colors.white,
+    textAlign: 'center',
+  },
+  disabledButtonText: {
     color: Colors.gray666,
     textAlign: 'center',
   }

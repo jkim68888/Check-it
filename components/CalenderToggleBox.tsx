@@ -7,11 +7,19 @@ import React, { useState } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Calendar } from 'react-native-calendars'
 
-const CalenderToggleBox = () => {
-  dayjs.locale('ko')
+interface CalendarToggleBoxProps {
+  selectedDate: string;
+  onDateChange: (date: string) => void;
+}
 
+const CalenderToggleBox = ({ 
+  selectedDate, 
+  onDateChange 
+}: CalendarToggleBoxProps) => {
+
+  dayjs.locale('ko')
+  
   const today = dayjs().format('YYYY-MM-DD')
-  const [selectedDate, setSelectedDate] = useState(today)
   const [isCalendarVisible, setCalendarVisible] = useState(false)
 
   const toggleCalendar = () => {
@@ -19,7 +27,7 @@ const CalenderToggleBox = () => {
   }
 
   const handleDayPress = (day: { dateString: string }) => {
-    setSelectedDate(day.dateString)
+    onDateChange(day.dateString)
     setCalendarVisible(false)
   }
 
@@ -27,7 +35,7 @@ const CalenderToggleBox = () => {
     <View>
       <TouchableOpacity onPress={toggleCalendar} style={styles.dateButton}>
         <Typo style={styles.todayText} family={Fonts.Jalnan.default} size={16}>
-          { selectedDate == today ? "오늘" : "미래" }
+          { selectedDate === today ? "오늘" : "미래" }
         </Typo>
         <Typo family={Fonts.Jalnan.default} size={14} color={Colors.gray999}>
           {dayjs(selectedDate).format('YYYY.M.D(dd)')}

@@ -1,8 +1,17 @@
 import { Colors } from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
-import { TypoProps } from '@/types/TypoProps';
 import React from 'react';
 import { Text, TextStyle } from 'react-native';
+
+interface TypoProps {
+  children: any | null
+  family?: string
+  size?: number
+  color?: string
+  align?: any
+  style?: TextStyle
+  numberOfLines?: number
+}
 
 const Typo = ({
   children,

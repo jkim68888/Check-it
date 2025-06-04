@@ -1,18 +1,20 @@
-
 import { Fonts } from '@/constants/Fonts'
 import { priorities } from '@/data/priorities'
 import { Priority } from '@/types/Priority'
-import React, { useState } from 'react'
+import React from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import PriorityButton from './PriorityButton'
 import Typo from './Typo'
 
-const PrioritySelectBox = () => {
-  const [selectedItem, setSelectedItem] = useState<Priority | null>(null)
+interface PrioritySelectBoxProps {
+  selectedPriority: Priority | null;
+  onPriorityChange: (priority: Priority) => void;
+}
 
-  const handleItemPress = (item: Priority) => {
-    setSelectedItem(item)
-  }
+const PrioritySelectBox = ({ 
+  selectedPriority, 
+  onPriorityChange 
+}: PrioritySelectBoxProps) => {
   
   return (
     <View style={styles.container}>
@@ -25,16 +27,16 @@ const PrioritySelectBox = () => {
         renderItem={(data) => (
           <PriorityButton
             item={data.item[1]}
-            selectedItem={selectedItem}
-            onPress={handleItemPress}
+            selectedItem={selectedPriority}
+            onPress={onPriorityChange}
           />
         )}
-        extraData={selectedItem}
+        extraData={selectedPriority}
         numColumns={3}
         columnWrapperStyle={styles.row}
       />
     </View>
-  );
+  )
 }
 
 export default PrioritySelectBox
