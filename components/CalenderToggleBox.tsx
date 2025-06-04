@@ -31,14 +31,22 @@ const CalenderToggleBox = ({
     setCalendarVisible(false)
   }
 
+  const getTitleText = () => {
+    return dayjs(selectedDate).isSame(today, 'day') ? "오늘" : "미래"
+  }
+
+  const getDateText = () => {
+    return dayjs(selectedDate).format('YYYY.M.D(dd)')
+  }
+
   return (
     <View>
       <TouchableOpacity onPress={toggleCalendar} style={styles.dateButton}>
         <Typo style={styles.todayText} family={Fonts.Jalnan.default} size={16}>
-          { selectedDate === today ? "오늘" : "미래" }
+          {getTitleText()}
         </Typo>
         <Typo family={Fonts.Jalnan.default} size={14} color={Colors.gray999}>
-          {dayjs(selectedDate).format('YYYY.M.D(dd)')}
+          {getDateText()}
         </Typo>
         <Image
           source={require('../assets/images/toggle.png')}

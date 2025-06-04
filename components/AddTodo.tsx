@@ -1,21 +1,29 @@
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
+import dayjs from 'dayjs'
 import { useRouter } from 'expo-router'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import Typo from './Typo'
 
-const AddTodo = () => {
+interface AddTodoProps {
+  date: Date;
+}
+
+const AddTodo = ({ date }: AddTodoProps) => {
   const router = useRouter()
 
   const handleAdd = () => {
-    router.push('/screens/edit')
+    router.push({
+      pathname: '/screens/edit',
+      params: { date: dayjs(date).format('YYYY-MM-DD') }
+    })
   }
 
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={handleAdd}>
-        <Typo family={Fonts.Pretendard.medium} color={Colors.gray666} size={12}>+ 할 일 추가 하기</Typo>
+        <Typo family={Fonts.Pretendard.medium} color={Colors.gray666} size={12}>+ 할 일 추가하기</Typo>
       </TouchableOpacity>
     </View>
   )

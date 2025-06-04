@@ -1,15 +1,12 @@
 import TodoBox from '@/components/TodoBox';
 import { Colors } from '@/constants/Colors';
-import { TodoContainer } from '@/types/TodoContainer';
+import { useTodo } from '@/hooks/useTodo';
 import React from 'react';
 import { FlatList, Image, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Home = () => {
-  const initialTodoBoxes: TodoContainer[] = [
-    { id: '1', title: '오늘', subTitle: '2025.5.24(토)', imageSource: require('../assets/images/pin.png') },
-    { id: '2', title: '미래', subTitle: '', imageSource: require('../assets/images/blank.png') },
-  ]
+  const { todoContainers, todos } = useTodo();
 
   return (
     <GestureHandlerRootView>
@@ -18,11 +15,14 @@ const Home = () => {
           <Image resizeMode='contain' source={require('../assets/images/logo.png')} />
         </View>
         <FlatList 
-          data={initialTodoBoxes} 
+          data={todoContainers}
+          extraData={todos}
           keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
           renderItem={(data) => (
             <TodoBox {...data.item} />
-        )} />
+          )}
+        />
       </View>
     </GestureHandlerRootView>
   )

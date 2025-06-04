@@ -8,46 +8,59 @@ import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
 import DeleteBox from './DeleteBox'
 import Typo from './Typo'
 
-const TodoItem = (item: Todo) => {
+interface TodoItemProps {
+  todo: Todo;
+  drag: () => void;
+  isActive: boolean;
+}
+
+const TodoItem = ({ todo, drag, isActive }: TodoItemProps) => {
   const { toggleDone } = useTodo()
 
   const renderRightActions = () => (
-    <DeleteBox {...item} />
+    <DeleteBox {...todo} />
   )
-  
+
   return (
-    <View style={styles.container}>
-      <Swipeable
-        childrenContainerStyle={[
-          styles.button,
-          {backgroundColor: item.priority.color}
-        ]}
-        renderRightActions={renderRightActions}
-        overshootRight={true}
-      >
-        {item.done ? (
-          <Typo
-            style={styles.doneText}
-            family={Fonts.Pretendard.medium}
-            color={Colors.gray666}
-            size={12}
-          >
-            {item.text}
-          </Typo>
-        ) : (
-          <Typo
-            family={Fonts.Pretendard.medium}
-            color={Colors.gray666}
-            size={12}
-          >
-            {item.text}
-          </Typo>
-        )}
-        <TouchableOpacity style={styles.checkbox} onPress={() => toggleDone(item)}>
-          {item.done && <Text style={styles.checkmark}>✓</Text>}
-        </TouchableOpacity>
-      </Swipeable>
-    </View>
+    <TouchableOpacity 
+      onLongPress={drag}
+      delayLongPress={100}
+      style={{ opacity: isActive ? 0.5 : 1 }}
+    >
+      <View style={styles.container}>
+        <Swipeable
+          childrenContainerStyle={[
+            styles.button,
+            {backgroundColor: todo.priority.color}
+          ]}
+          renderRightActions={renderRightActions}
+          overshootRight={true}
+        >
+          
+            {todo.done ? (
+              <Typo
+                style={styles.doneText}
+                family={Fonts.Pretendard.medium}
+                color={Colors.gray666}
+                size={12}
+              >
+                {todo.text}
+              </Typo>
+            ) : (
+              <Typo
+                family={Fonts.Pretendard.medium}
+                color={Colors.gray666}
+                size={12}
+              >
+                {todo.text}
+              </Typo>
+            )}
+            <TouchableOpacity style={styles.checkbox} onPress={() => toggleDone(todo)}>
+              {todo.done && <Text style={styles.checkmark}>✓</Text>}
+            </TouchableOpacity>
+        </Swipeable>
+      </View>
+    </TouchableOpacity>
   )
 }
 
@@ -69,7 +82,7 @@ const styles = StyleSheet.create({
   },
   doneText: {
     textDecorationLine: 'line-through',
-    color: Colors.gray999,
+    color: Colors.gray999
   },
   checkbox: {
     width: 16,

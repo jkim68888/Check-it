@@ -7,16 +7,17 @@ import { Fonts } from '@/constants/Fonts'
 import { useTodo } from '@/hooks/useTodo'
 import { Priority } from '@/types/Priority'
 import dayjs from 'dayjs'
-import { useRouter } from 'expo-router'
+import { useLocalSearchParams, useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 export default function EditScreen() {
   const router = useRouter()
+  const { date } = useLocalSearchParams<{ date: string }>()
   const today = dayjs().format('YYYY-MM-DD')
   const [todoText, setTodoText] = useState('')
-  const [selectedDate, setSelectedDate] = useState(today)
+  const [selectedDate, setSelectedDate] = useState(date || today)
   const [selectedPriority, setSelectedPriority] = useState<Priority | null>(null)
   const { addTodo } = useTodo();
 
@@ -36,8 +37,12 @@ export default function EditScreen() {
   // 할 일 추가
   const handleAdd = () => {
     if (isFormValid()) {
-      addTodo(todoText, new Date(selectedDate), selectedPriority as Priority)
-      goBack()
+      // selectedPriority가 이미 Priority 타입이거나 null이므로 null이 아닐 때만 실행
+      if (selectedPriority) {
+        const date = dayjs(selectedDate).toDate()  // string을 Date로 변환
+        addTodo(todoText, selectedPriority, date)
+        goBack()
+      }
     }
   }
 

@@ -1,24 +1,47 @@
 import { Colors } from '@/constants/Colors'
 import { Fonts } from '@/constants/Fonts'
+import { useTodo } from '@/hooks/useTodo'
 import { TodoContainer } from '@/types/TodoContainer'
+import dayjs from 'dayjs'
 import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Alert, Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import AddTodo from './AddTodo'
 import TodoList from './TodoList'
 import Typo from './Typo'
 
-const TodoBox = (item: TodoContainer) => {
+const TodoBox = ({ 
+  id,
+  title,
+  subTitle,
+  imageSource,
+  date
+}: TodoContainer) => {
+  const { todos, deleteAllTodosByDate } = useTodo()
+  const today = dayjs().startOf('day')
+  const isFutureDate = dayjs(date).startOf('day').isAfter(today)
+
+  const handleDeleteAll = () => {
+    if (isFutureDate) {
+      Alert.alert('삭제', '할 일을 삭제할까요?', [
+        { text: '취소', style: 'cancel' },
+        { text: '삭제', onPress: () => deleteAllTodosByDate(date) },
+      ])
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.dateBox}>
-          <Typo style={{paddingRight: 8}} family={Fonts.Jalnan.default} size={15}>{item.title}</Typo>
-          <Typo family={Fonts.Jalnan.default} size={12} color={Colors.gray999}>{item.subTitle}</Typo>
+          <Typo style={{paddingRight: 8}} family={Fonts.Jalnan.default} size={15}>{title}</Typo>
+          <Typo family={Fonts.Jalnan.default} size={12} color={Colors.gray999}>{subTitle}</Typo>
         </View>
-        <Image source={item.imageSource} />
+        <TouchableOpacity onPress={handleDeleteAll}>
+          <Image source={imageSource} />
+        </TouchableOpacity>
       </View>
-      { item.title != '미래' && <TodoList /> }
-      <AddTodo />
+      <TodoList date={date} />
+      <AddTodo date={date} />
     </View>
   )
 }

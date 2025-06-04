@@ -1,34 +1,34 @@
 import { useTodo } from '@/hooks/useTodo';
 import { Todo } from '@/types/Todo';
-import React, { useEffect } from 'react';
-import { TouchableOpacity } from 'react-native';
+import dayjs from 'dayjs';
+import React from 'react';
 import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 import TodoItem from './TodoItem';
 
+interface TodoListProps {
+  date: Date;
+}
 
-const TodoList = () => {
+const TodoList = ({ date }: TodoListProps) => {
   const { todos, reorderTodo } = useTodo();
   
+  // 해당 날짜의 todo만 필터링
+  const filteredTodos = todos.filter(todo => 
+    dayjs(todo.date).startOf('day').isSame(dayjs(date).startOf('day'))
+  );
+
   const renderItem = ({item, drag, isActive}: RenderItemParams<Todo>) => (
-    <TouchableOpacity
-      onLongPress={drag} // 길게 눌러서 드래그 시작
-      delayLongPress={100}
-      style={{
-        opacity: isActive ? 0.5 : 1
-      }}
-    >
-      <TodoItem {...item} />
-    </TouchableOpacity>
+    <TodoItem 
+      todo={item}
+      drag={drag}
+      isActive={isActive}
+    />
   )
 
-  useEffect(() => {
-    console.log('🟡 [useTodo] 현재 할 일 목록:', todos);
-  }, [todos])
-  
   return (
     <DraggableFlatList
-      data={todos}
-      renderItem={(data) => renderItem(data)}
+      data={filteredTodos}
+      renderItem={renderItem}
       keyExtractor={(item) => item.id}
       onDragEnd={(data) => reorderTodo(data.data)}
       scrollEnabled={false}

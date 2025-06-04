@@ -5,4 +5,5 @@ export type TodoContainer = {
   title: string
   subTitle: string,
   imageSource: ImageSourcePropType | undefined
+  date: Date
 }
