@@ -74,6 +74,7 @@ export default Home
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    width: '100%',
     backgroundColor: Colors.background,
   },
   container: {
@@ -104,8 +105,8 @@ const styles = StyleSheet.create({
       android: {
         top: windowHeight / 2,
         left: windowWidth / 2,
-        width: 300,
-        height: 124,
+        width: 316,
+        height: 116,
         elevation: 5,
       },
     }),

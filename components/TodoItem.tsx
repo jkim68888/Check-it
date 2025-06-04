@@ -36,7 +36,6 @@ const TodoItem = ({ todo, drag, isActive }: TodoItemProps) => {
           renderRightActions={renderRightActions}
           overshootRight={true}
         >
-          
             {todo.done ? (
               <Typo
                 style={styles.doneText}

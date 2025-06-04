@@ -1,5 +1,5 @@
 import { initialTodos } from '@/data/initialTodos';
-import { loadTodos, saveTodos } from '@/storage';
+import { TodoStorage } from '@/storage/todos';
 import { Priority } from '@/types/Priority';
 import { Todo } from '@/types/Todo';
 import { TodoContainer } from '@/types/TodoContainer';
@@ -25,23 +25,27 @@ interface TodoContextProps {
 const TodoContext = createContext<TodoContextProps | undefined>(undefined);
 
 const TodoProvider = ({ children }: { children: ReactNode }) => {
-  const [todos, setTodos] = useState<Todo[]>(initialTodos);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [todoContainers, setTodoContainers] = useState<TodoContainer[]>([]);
 
   // AsyncStorage에서 데이터 불러오기
   useEffect(() => {
-    const init = async () => {
-      const savedTodos = await loadTodos();
-      if (savedTodos) {
+    const loadTodos = async () => {
+      const savedTodos = await TodoStorage.getAll();
+
+      if (savedTodos.length === 0) {
+        setTodos(initialTodos);
+      } else {
         setTodos(savedTodos);
       }
     };
-    init();
+
+    loadTodos();
   }, []);
 
   // todos가 변경될 때마다 AsyncStorage에 저장
   useEffect(() => {
-    saveTodos(todos);
+    TodoStorage.save(todos);
   }, [todos]);
 
   // 과거 데이터 정리 및 컨테이너 업데이트
@@ -132,8 +136,9 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
     console.log(`✅ add Todo: ${text} - `, priority);
   };
 
-  const deleteTodo = (todo: Todo) => {
-    setTodos(prev => prev.filter(data => data.id !== todo.id));
+  const deleteTodo = async (todo: Todo) => {
+    const updatedTodos = await TodoStorage.delete(todos, todo);
+    setTodos(updatedTodos);
     console.log("❌ delete Todo: ", todo);
   };
 
@@ -146,14 +151,17 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
     console.log("🗑️ delete all todos for date: ", targetDate.format('YYYY-MM-DD'));
   };
 
-  const toggleDone = (todo: Todo) => {
-    setTodos(prev =>
-      prev.map(data => (data.id === todo.id ? {...data, done: !data.done} : data))
-    );
+  const toggleDone = async (todo: Todo) => {
+    const updatedTodos = await TodoStorage.toggle(todos, todo);
+    setTodos(updatedTodos);
   };
 
-  const reorderTodo = (newTodos: Todo[]) => {
-    setTodos(newTodos.map((data, index) => ({...data, order: index})));
+  const reorderTodo = async (newTodos: Todo[]) => {
+    // newTodos는 특정 날짜의 할 일들만 포함하고 있으므로, 
+    // 해당 날짜 정보도 함께 전달
+    const date = newTodos[0]?.date || '';
+    const updatedTodos = await TodoStorage.reorder(todos, newTodos, date.toString());
+    setTodos(updatedTodos);
   };
 
   return (
