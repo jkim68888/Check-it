@@ -1,4 +1,5 @@
 import { initialTodos } from '@/data/initialTodos';
+import { loadTodos, saveTodos } from '@/storage';
 import { Priority } from '@/types/Priority';
 import { Todo } from '@/types/Todo';
 import { TodoContainer } from '@/types/TodoContainer';
@@ -26,6 +27,22 @@ const TodoContext = createContext<TodoContextProps | undefined>(undefined);
 const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>(initialTodos);
   const [todoContainers, setTodoContainers] = useState<TodoContainer[]>([]);
+
+  // AsyncStorage에서 데이터 불러오기
+  useEffect(() => {
+    const init = async () => {
+      const savedTodos = await loadTodos();
+      if (savedTodos) {
+        setTodos(savedTodos);
+      }
+    };
+    init();
+  }, []);
+
+  // todos가 변경될 때마다 AsyncStorage에 저장
+  useEffect(() => {
+    saveTodos(todos);
+  }, [todos]);
 
   // 과거 데이터 정리 및 컨테이너 업데이트
   useEffect(() => {
