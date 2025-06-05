@@ -6,8 +6,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { LocaleConfig } from 'react-native-calendars';
 
-// 앱 시작 시 스플래시 화면 유지
-SplashScreen.preventAutoHideAsync();
+// 스플래시 화면이 즉시 사라지는 것을 방지
+SplashScreen.preventAutoHideAsync().catch(() => {
+  /* 에러 무시 */
+});
 
 const index = () => {
   const router = useRouter()
@@ -44,8 +46,8 @@ const index = () => {
       try {
         // 폰트 로딩, API 호출, 데이터 로딩 등 초기화 작업
         loadFonts()
-        // 인위적으로 최소 1초 대기
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // 인위적으로 최소 2초 대기
+        await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (e) {
         console.warn(e);
       } finally {
