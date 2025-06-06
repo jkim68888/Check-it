@@ -1,4 +1,4 @@
-package com.checkit.app
+package com.jihyunkim.checkit
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

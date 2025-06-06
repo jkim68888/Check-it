@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.checkit.app'
+    namespace 'com.jihyunkim.checkit'
     defaultConfig {
-        applicationId 'com.checkit.app'
+        applicationId 'com.jihyunkim.checkit'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

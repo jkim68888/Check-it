@@ -1,4 +1,4 @@
-package com.checkit.app
+package com.jihyunkim.checkit
 
 import android.app.Application
 import android.content.res.Configuration
