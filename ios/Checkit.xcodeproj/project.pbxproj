@@ -22,7 +22,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Checkit/Info.plist; sourceTree = "<group>"; };
 		19C00979A4C145D335465BA6 /* libPods-Checkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Checkit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D109BDFD7D5D49B74B2FD6 /* Pods-Checkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checkit.debug.xcconfig"; path = "Target Support Files/Pods-Checkit/Pods-Checkit.debug.xcconfig"; sourceTree = "<group>"; };
-		A432620011C60A2F34754D5D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Checkit/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A432620011C60A2F34754D5D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Checkit/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Checkit/SplashScreen.storyboard; sourceTree = "<group>"; };
 		B92B5C929C055550C0EBE5FE /* Pods-Checkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checkit.release.xcconfig"; path = "Target Support Files/Pods-Checkit/Pods-Checkit.release.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
@@ -111,7 +111,6 @@
 				51D109BDFD7D5D49B74B2FD6 /* Pods-Checkit.debug.xcconfig */,
 				B92B5C929C055550C0EBE5FE /* Pods-Checkit.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -338,6 +337,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Checkit/Checkit.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6RZ3FF956G;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -357,7 +357,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.checkit.app;
-				PRODUCT_NAME = Checkit;
+				PRODUCT_NAME = "Checkit";
 				SWIFT_OBJC_BRIDGING_HEADER = "Checkit/Checkit-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -374,6 +374,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Checkit/Checkit.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6RZ3FF956G;
 				INFOPLIST_FILE = Checkit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -388,7 +389,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.checkit.app;
-				PRODUCT_NAME = Checkit;
+				PRODUCT_NAME = "Checkit";
 				SWIFT_OBJC_BRIDGING_HEADER = "Checkit/Checkit-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

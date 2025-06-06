@@ -11,6 +11,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function EditScreen() {
   const router = useRouter()
@@ -47,50 +48,58 @@ export default function EditScreen() {
   }
 
   return (
-    <GestureHandlerRootView>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={goBack}>
-          <Image source={require("../../assets/images/back.png")} />
-        </TouchableOpacity>
-        <CalenderToggleBox 
-          selectedDate={selectedDate}
-          onDateChange={setSelectedDate}
-        />
-        <InputBox 
-          value={todoText}
-          onChangeText={setTodoText}
-        />
-        <PrioritySelectBox 
-          selectedPriority={selectedPriority}
-          onPriorityChange={setSelectedPriority}
-        />
-        <TouchableOpacity
-          style={[
-            styles.button,
-            isFormValid() ? styles.enabledButton : styles.disabledButton,
-          ]}
-          onPress={handleAdd}
-          disabled={!isFormValid()}
-        >
-          <Typo
-            style={isFormValid() ? styles.enabledButtonText : styles.disabledButtonText}
-            family={Fonts.Pretendard.medium}
-            size={16}
+    <SafeAreaView style={styles.root}>
+      <GestureHandlerRootView style={styles.gestureRoot}>
+        <View style={styles.container}>
+          <TouchableOpacity onPress={goBack}>
+            <Image source={require("../../assets/images/back.png")} />
+          </TouchableOpacity>
+          <CalenderToggleBox 
+            selectedDate={selectedDate}
+            onDateChange={setSelectedDate}
+          />
+          <InputBox 
+            value={todoText}
+            onChangeText={setTodoText}
+          />
+          <PrioritySelectBox 
+            selectedPriority={selectedPriority}
+            onPriorityChange={setSelectedPriority}
+          />
+          <TouchableOpacity
+            style={[
+              styles.button,
+              isFormValid() ? styles.enabledButton : styles.disabledButton,
+            ]}
+            onPress={handleAdd}
+            disabled={!isFormValid()}
           >
-            추가 하기
-          </Typo>
-        </TouchableOpacity>
-      </View>
-    </GestureHandlerRootView>
+            <Typo
+              style={isFormValid() ? styles.enabledButtonText : styles.disabledButtonText}
+              family={Fonts.Pretendard.medium}
+              size={16}
+            >
+              추가 하기
+            </Typo>
+          </TouchableOpacity>
+        </View>
+      </GestureHandlerRootView>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
     backgroundColor: Colors.background,
-    paddingTop: 60,
-    paddingHorizontal: 20
+  },
+  gestureRoot: {
+    flex: 1,
+    width: '100%',
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
   },
   button: {
     position: 'absolute',
@@ -115,5 +124,12 @@ const styles = StyleSheet.create({
   disabledButtonText: {
     color: Colors.gray666,
     textAlign: 'center',
-  }
+  },
+  modalContent: {
+    width: '90%',
+    maxWidth: 400,
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 20,
+  },
 })

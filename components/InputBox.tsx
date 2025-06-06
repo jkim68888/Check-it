@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 160,
-    borderWidth: 1,
-    borderColor: Colors.gray999,
+    backgroundColor: Colors.white,
     borderRadius: 8,
     padding: 20,
     fontSize: 14
