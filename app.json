@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Check-it",
+    "name": "체크잇",
     "slug": "Check-it",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,9 @@
     "scheme": "checkit",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "cover",
@@ -16,7 +18,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.checkit.app"
+      "bundleIdentifier": "com.jihyunkim.checkit"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,6 +40,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "44cded6e-110b-4064-8d5a-31c2cba6a651"
+      }
     }
   }
 }

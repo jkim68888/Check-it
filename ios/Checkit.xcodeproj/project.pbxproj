@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13620DC991599CC702382B52 /* libPods-Checkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C00979A4C145D335465BA6 /* libPods-Checkit.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		20DE1946169A43E2BA56D822 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C8B8A29D5446B5930C40AB /* noop-file.swift */; };
 		23FA7158DD2CE7BEBF3D4EAE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A432620011C60A2F34754D5D /* PrivacyInfo.xcprivacy */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		97264324E921041467D44E4B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D26E61DE02B63078669FF /* ExpoModulesProvider.swift */; };
@@ -21,6 +22,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Checkit/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Checkit/Info.plist; sourceTree = "<group>"; };
 		19C00979A4C145D335465BA6 /* libPods-Checkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Checkit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40C8B8A29D5446B5930C40AB /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "Checkit/noop-file.swift"; sourceTree = "<group>"; };
 		51D109BDFD7D5D49B74B2FD6 /* Pods-Checkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Checkit.debug.xcconfig"; path = "Target Support Files/Pods-Checkit/Pods-Checkit.debug.xcconfig"; sourceTree = "<group>"; };
 		A432620011C60A2F34754D5D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Checkit/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Checkit/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
 				A432620011C60A2F34754D5D /* PrivacyInfo.xcprivacy */,
+				40C8B8A29D5446B5930C40AB /* noop-file.swift */,
 			);
 			name = Checkit;
 			sourceTree = "<group>";
@@ -272,7 +275,6 @@
 				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle",
 			);
@@ -286,7 +288,6 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDWebImage.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/boost_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/glog_privacy.bundle",
 			);
@@ -323,6 +324,7 @@
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
 				97264324E921041467D44E4B /* ExpoModulesProvider.swift in Sources */,
+				20DE1946169A43E2BA56D822 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,8 +358,8 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkit.app;
-				PRODUCT_NAME = "Checkit";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihyunkim.checkit;
+				PRODUCT_NAME = app;
 				SWIFT_OBJC_BRIDGING_HEADER = "Checkit/Checkit-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -388,8 +390,8 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkit.app;
-				PRODUCT_NAME = "Checkit";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihyunkim.checkit;
+				PRODUCT_NAME = app;
 				SWIFT_OBJC_BRIDGING_HEADER = "Checkit/Checkit-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
