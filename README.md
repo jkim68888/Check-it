@@ -7,19 +7,6 @@
 - v1.0 
     - 25.06.06 심사 제출
 
-## 🛠️ Technical Skills
-- TypeScript
-- React Native, React
-   - Functional Components
-   - React Hooks
-   - Props & State 관리
-- Expo SDK
-   - Expo CLI 사용
-   - Expo EAS 빌드 및 배포
-- AsyncStorage
-   - 로컬스토리지 사용하여 데이터 저장
-
-
 ## 📍 Development Environment
 - 언어 : TypeScript v5.8.3
 - 프레임워크 : Expo v53.0.9, React v19.0.0, React Native v0.79.3

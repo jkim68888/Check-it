@@ -17,7 +17,7 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.jihyunkim.checkit"
     },
     "android": {
@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#EBEBEB"
       },
-      "package": "com.checkit.app",
+      "package": "com.jihyunkim.checkit",
       "softwareKeyboardLayoutMode": "pan",
       "statusBarColor": "#EBEBEB"
     },
