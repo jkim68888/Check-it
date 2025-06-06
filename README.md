@@ -1,50 +1,35 @@
-# Welcome to your Expo app 👋
+# 체크잇
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📌 어플리케이션 제작
+- 기간 : 2025.05.24 ~ 25.06.06
 
-## Get started
+## 🚀 Release
+- v1.0 
+    - 25.06.06 심사 제출
 
-1. Install dependencies
+## 🛠️ Technical Skills
+- TypeScript
+- React Native, React
+   - Functional Components
+   - React Hooks
+   - Props & State 관리
+- Expo SDK
+   - Expo CLI 사용
+   - Expo EAS 빌드 및 배포
+- AsyncStorage
+   - 로컬스토리지 사용하여 데이터 저장
 
-   ```bash
-   npm install
-   ```
 
-2. Start the app
+## 📍 Development Environment
+- 언어 : TypeScript v5.8.3
+- 프레임워크 : Expo v53.0.9, React v19.0.0, React Native v0.79.3
+- 저장소 : @react-native-async-storage/async-storage
 
-   ```bash
-   npx expo start
-   ```
+## 📸 ScreenShot
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🍎 AppStore
+[다운받으러 가기]()
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🤖 Google PlayStore
+[다운받으러 가기]()

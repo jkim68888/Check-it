@@ -77,6 +77,7 @@ export default Home
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    width: '100%',
     backgroundColor: Colors.background,
   },
   gestureRoot: {
