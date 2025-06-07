@@ -13,7 +13,7 @@
 - 저장소 : @react-native-async-storage/async-storage
 
 ## 📸 ScreenShot
-![Image](https://private-user-images.githubusercontent.com/75922558/452234860-310b3767-2ca6-427a-8e39-9628c832c49f.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDkzMTM3NDAsIm5iZiI6MTc0OTMxMzQ0MCwicGF0aCI6Ii83NTkyMjU1OC80NTIyMzQ4NjAtMzEwYjM3NjctMmNhNi00MjdhLThlMzktOTYyOGM4MzJjNDlmLmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA2MDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjA3VDE2MjQwMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWYxOTRkM2YzMzdkZmZiMmVjYzc4MTlhMDBiNTQ4ODhjMzNhZWMyYjA2YmVhNTBlMTU3YjBjZGQ0YmI0MTQ3ZjgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.fXxyWb1w1KF45gts8Cdao13Wd4faoSUdfT6mYvEwxrg)
+![Image](https://img.notionusercontent.com/s3/prod-files-secure%2F87222b52-e6fc-4a1f-81e5-216449c61d6e%2Fddb49e7a-3a7c-4a74-bc91-71fe7bc5b2ab%2FGroup_34414.jpg/size/w=2000?exp=1749402440&sig=IqZLO9VXykFd_L4cGrhGwiHYeJomWmlONgZvldG37jc&id=20377358-37bf-800a-b56b-dfbff421732d&table=block)
 
 ## 🍎 AppStore
 [다운받으러 가기]()
