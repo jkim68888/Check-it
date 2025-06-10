@@ -2,7 +2,7 @@
   "expo": {
     "name": "체크잇",
     "slug": "Check-it",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "checkit",
@@ -17,7 +17,6 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "buildNumber": "1",
       "supportsTablet": false,
       "bundleIdentifier": "com.jihyunkim.checkit"
     },
@@ -32,8 +31,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.jihyunkim.checkit",
-      "softwareKeyboardLayoutMode": "pan",
-      "versionCode": 1
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "bundler": "metro",
