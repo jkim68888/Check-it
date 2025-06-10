@@ -9,7 +9,7 @@ import { Priority } from '@/types/Priority'
 import dayjs from 'dayjs'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import React, { useState } from 'react'
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Image, Keyboard, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -50,39 +50,41 @@ export default function EditScreen() {
   return (
     <SafeAreaView style={styles.root}>
       <GestureHandlerRootView style={styles.gestureRoot}>
-        <View style={styles.container}>
-          <TouchableOpacity onPress={goBack}>
-            <Image source={require("../../assets/images/back.png")} />
-          </TouchableOpacity>
-          <CalenderToggleBox 
-            selectedDate={selectedDate}
-            onDateChange={setSelectedDate}
-          />
-          <InputBox 
-            value={todoText}
-            onChangeText={setTodoText}
-          />
-          <PrioritySelectBox 
-            selectedPriority={selectedPriority}
-            onPriorityChange={setSelectedPriority}
-          />
-          <TouchableOpacity
-            style={[
-              styles.button,
-              isFormValid() ? styles.enabledButton : styles.disabledButton,
-            ]}
-            onPress={handleAdd}
-            disabled={!isFormValid()}
-          >
-            <Typo
-              style={isFormValid() ? styles.enabledButtonText : styles.disabledButtonText}
-              family={Fonts.Pretendard.medium}
-              size={16}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.container}>
+            <TouchableOpacity onPress={goBack}>
+              <Image source={require("../../assets/images/back.png")} />
+            </TouchableOpacity>
+            <CalenderToggleBox 
+              selectedDate={selectedDate}
+              onDateChange={setSelectedDate}
+            />
+            <InputBox 
+              value={todoText}
+              onChangeText={setTodoText}
+            />
+            <PrioritySelectBox 
+              selectedPriority={selectedPriority}
+              onPriorityChange={setSelectedPriority}
+            />
+            <TouchableOpacity
+              style={[
+                styles.button,
+                isFormValid() ? styles.enabledButton : styles.disabledButton,
+              ]}
+              onPress={handleAdd}
+              disabled={!isFormValid()}
             >
-              추가 하기
-            </Typo>
-          </TouchableOpacity>
-        </View>
+              <Typo
+                style={isFormValid() ? styles.enabledButtonText : styles.disabledButtonText}
+                family={Fonts.Pretendard.medium}
+                size={16}
+              >
+                추가 하기
+              </Typo>
+            </TouchableOpacity>
+          </View>
+        </TouchableWithoutFeedback>
       </GestureHandlerRootView>
     </SafeAreaView>
   )
