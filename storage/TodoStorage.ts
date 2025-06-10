@@ -1,6 +1,7 @@
 import { TODOS_STORAGE_KEY } from '@/constants/StorageKeys';
 import { Todo } from '@/types/Todo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import dayjs from 'dayjs';
 
 export const TodoStorage = {
   // 전체 데이터 조회
@@ -61,7 +62,13 @@ export const TodoStorage = {
   reorder: async (allTodos: Todo[], newDateTodos: Todo[], date: string): Promise<Todo[]> => {
     try {
       // 다른 날짜의 할 일들 유지
-      const otherDateTodos = allTodos.filter(todo => todo.date.toString() !== date);
+      const otherDateTodos = allTodos.filter(todo => {
+        // 시간 정보를 제거하고 날짜만 비교
+        const todoDate = dayjs(todo.date).startOf('day');
+        const targetDate = dayjs(date).startOf('day');
+        
+        return !todoDate.isSame(targetDate);
+      });
       
       // 새로운 순서가 적용된 해당 날짜의 할 일들
       const orderedDateTodos = newDateTodos.map((todo, index) => ({

@@ -25,6 +25,8 @@ const TodoItem = ({ todo, drag, isActive }: TodoItemProps) => {
     <TouchableOpacity 
       onLongPress={drag}
       delayLongPress={100}
+      activeOpacity={1}  // 일반 터치시 opacity 변화 없음
+      onPress={() => {}} // 빈 함수로 일반 터치 비활성화
       style={{ opacity: isActive ? 0.5 : 1 }}
     >
       <View style={styles.container}>
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   button: {
-    paddingVertical: 12,
+    paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 4,
     width: '100%',
@@ -84,8 +86,8 @@ const styles = StyleSheet.create({
     color: Colors.gray999
   },
   checkbox: {
-    width: 16,
-    height: 16,
+    width: 24,
+    height: 24,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.white,
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   checkmark: {
-    fontSize: 12,
+    fontSize: 20,
     fontWeight: 'bold',
     color: Colors.green,
   }
