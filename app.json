@@ -24,7 +24,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#EBEBEB"
+        "backgroundColor": "#ffffff"
+      },
+      "splash": {
+        "image": "./assets/images/splash-aos.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#ffffff"
       },
       "package": "com.jihyunkim.checkit",
       "softwareKeyboardLayoutMode": "pan",
