@@ -1,5 +1,6 @@
 import { initialTodos } from '@/data/initialTodos';
-import { TodoStorage } from '@/storage/todos';
+import { AppStorage } from '@/storage/AppStorage';
+import { TodoStorage } from '@/storage/TodoStorage';
 import { Priority } from '@/types/Priority';
 import { Todo } from '@/types/Todo';
 import { TodoContainer } from '@/types/TodoContainer';
@@ -32,13 +33,18 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const loadTodos = async () => {
       const savedTodos = await TodoStorage.getAll();
+      const isFirstLaunch = await AppStorage.isFirstLaunch();
+      const noData = savedTodos.length === 0
 
-      if (savedTodos.length === 0) {
+      if (isFirstLaunch && noData) {
+        await AppStorage.markFirstLaunch();  // 최초 실행 표시
         setTodos(initialTodos);
+      } else if (!isFirstLaunch && noData) {
+        setTodos([]);
       } else {
         setTodos(savedTodos);
       }
-    };
+    }
 
     loadTodos();
   }, []);

@@ -1,10 +1,9 @@
+import { TODOS_STORAGE_KEY } from '@/constants/StorageKeys';
 import { Todo } from '@/types/Todo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const TODOS_STORAGE_KEY = '@todos';
-
 export const TodoStorage = {
-  // 모든 할 일 가져오기
+  // 전체 데이터 조회
   getAll: async (): Promise<Todo[]> => {
     try {
       const todosJson = await AsyncStorage.getItem(TODOS_STORAGE_KEY);
