@@ -71,6 +71,7 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
     // 날짜별 컨테이너 생성
     const containers: TodoContainer[] = [];
     
+    // 1. 오늘 박스
     // 오늘 컨테이너 추가
     containers.push({
       id: 'today',
@@ -80,6 +81,7 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
       date: today.toDate()
     });
 
+    // 2. 날짜 박스
     // 미래 날짜별 todo 그룹화
     const futureTodos = filteredTodos.filter(todo => 
       dayjs(todo.date).startOf('day').isAfter(today)
@@ -109,16 +111,17 @@ const TodoProvider = ({ children }: { children: ReactNode }) => {
             date: date.toDate()
           });
         });
-    } else {
-      // 미래 todo가 없으면 빈 미래 박스 추가
-      containers.push({
-        id: 'future',
-        title: '미래',
-        subTitle: '',
-        imageSource: require('../assets/images/blank.png'),
-        date: today.add(1, 'day').toDate()
-      });
     }
+
+    // 3. 미래 박스
+    // 미래 박스는 항상 마지막에 추가
+    containers.push({
+      id: 'future',
+      title: '미래',
+      subTitle: '',
+      imageSource: require('../assets/images/blank.png'),
+      date: null 
+    });
 
     setTodoContainers(containers);
   }, [todos]);

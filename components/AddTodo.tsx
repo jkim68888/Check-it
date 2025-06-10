@@ -7,7 +7,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import Typo from './Typo'
 
 interface AddTodoProps {
-  date: Date;
+  date: Date | null;
 }
 
 const AddTodo = ({ date }: AddTodoProps) => {

@@ -32,11 +32,14 @@ const CalenderToggleBox = ({
   }
 
   const getTitleText = () => {
-    return dayjs(selectedDate).isSame(today, 'day') ? "오늘" : "미래"
+    return dayjs(selectedDate).isSame(today, 'day') 
+      ? "오늘" : "미래"
   }
 
   const getDateText = () => {
-    return dayjs(selectedDate).format('YYYY.M.D(dd)')
+    return selectedDate === 'Invalid Date'
+      ? '날짜 선택' 
+      : dayjs(selectedDate).format('YYYY.M.D(dd)')
   }
 
   return (

@@ -24,7 +24,7 @@ const TodoBox = ({
     if (isFutureDate) {
       Alert.alert('삭제', '할 일을 삭제할까요?', [
         { text: '취소', style: 'cancel' },
-        { text: '삭제', onPress: () => deleteAllTodosByDate(date) },
+        { text: '삭제', onPress: () => date && deleteAllTodosByDate(date) },
       ])
     }
   }
@@ -40,7 +40,7 @@ const TodoBox = ({
           <Image source={imageSource} />
         </TouchableOpacity>
       </View>
-      <TodoList date={date} />
+      {date && <TodoList date={date} />}
       <AddTodo date={date} />
     </View>
   )
