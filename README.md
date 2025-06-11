@@ -1,13 +1,16 @@
 # 체크잇
 
 ## 📌 어플리케이션 제작
-- 기간 : 2025.05.24 ~ 25.06.06
+- 기간 : 2025.05.24 ~ 2025.06.06
 
 ## 🚀 Release
-- v1.0 
+- [v1.0](https://github.com/jkim68888/Check-it/releases/tag/v1.0) 
     - 25.06.07 iOS 심사 제출
     - 25.06.08 Android 비공개 테스트
     - 25.06.09 iOS 앱스토어 출시
+
+- [v1.0.1](https://github.com/jkim68888/Check-it/releases/tag/v1.0.1)
+    - 25.06.11 iOS 심사 제출
 
 ## 📍 Development Environment
 - 언어 : TypeScript v5.8.3
@@ -21,4 +24,4 @@
 [다운받으러 가기](https://apps.apple.com/us/app/%EC%B2%B4%ED%81%AC%EC%9E%87/id6746921529)
 
 ## 🤖 Google PlayStore
-비공개 테스트중...
+비공개 테스터 모집중...
