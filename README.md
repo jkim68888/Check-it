@@ -10,7 +10,7 @@
     - 25.06.09 iOS 앱스토어 출시
 
 - [v1.0.1](https://github.com/jkim68888/Check-it/releases/tag/v1.0.1)
-    - 25.06.11 iOS 심사 제출
+    - 25.06.11 iOS 심사 제출 & 앱스토어 출시
 
 ## 📍 Development Environment
 - 언어 : TypeScript v5.8.3
