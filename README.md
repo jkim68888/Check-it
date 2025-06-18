@@ -18,7 +18,7 @@
 - 저장소 : @react-native-async-storage/async-storage
 
 ## 📸 ScreenShot
-![Image](https://img.notionusercontent.com/s3/prod-files-secure%2F87222b52-e6fc-4a1f-81e5-216449c61d6e%2Fddb49e7a-3a7c-4a74-bc91-71fe7bc5b2ab%2FGroup_34414.jpg/size/w=2000?exp=1749625973&sig=xSFLFUTShljQXuDhGN65bYkm_Ir0B7cpERHiByQnVJw&id=20377358-37bf-800a-b56b-dfbff421732d&table=block)
+![Group 34414](https://github.com/user-attachments/assets/d2330b38-416f-4736-9ab0-1b0463c3c142)
 
 ## 🍎 AppStore
 [다운받으러 가기](https://apps.apple.com/us/app/%EC%B2%B4%ED%81%AC%EC%9E%87/id6746921529)
